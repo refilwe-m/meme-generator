@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { placeholderMeme } from "../../assets";
 
 const URL = "https://api.imgflip.com/get_memes";
@@ -16,12 +16,28 @@ const getRandomImage = async () => {
 
 export const Form = () => {
   const [meme, setMeme] = useState(placeholderMeme);
+  const [topText, setTopText] = useState("Top text");
+  const [bottomText, setBottomText] = useState("Bottom text");
+  const refTop = useRef();
+  const refBottom = useRef();
 
   return (
     <div>
       <section className="input-fields">
-        <input placeholder="Top text" />
-        <input placeholder="Bottom text" />
+        <input
+          placeholder="Top text"
+          ref={refTop}
+          onChange={() => {
+            setTopText(refTop.current.value);
+          }}
+        />
+        <input
+          placeholder="Bottom text"
+          ref={refBottom}
+          onChange={() => {
+            setBottomText(refBottom.current.value);
+          }}
+        />
       </section>
 
       <button
@@ -35,8 +51,8 @@ export const Form = () => {
       </button>
       <section className="results">
         <img className="meme" src={meme} />
-        <p className="text1">Top text</p>
-        <p className="text2">Bottom text</p>
+        <p className="text1">{topText}</p>
+        <p className="text2">{bottomText}</p>
       </section>
     </div>
   );
