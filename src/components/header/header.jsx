@@ -7,7 +7,7 @@ export const Header = () => {
     <header className='header'>
         <section className='logo-group'>
             <img src={trollFace}/>
-            <h3>Meme Generator</h3>
+            <h2>Meme Generator</h2>
         </section>
     </header>
   )
